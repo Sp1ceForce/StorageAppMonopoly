@@ -1,11 +1,12 @@
-﻿using System;
+﻿using StorageAppInterface.StateController.States;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace StorageController.StateController
+namespace StorageAppLogic.StateController
 {
+    /// <summary>
+    /// Контроллер машины-состояний, необходим для работы главного меню
+    /// </summary>
     public class StorageStateManager
     {
         Dictionary<Type, IState> states;
@@ -14,8 +15,7 @@ namespace StorageController.StateController
         {
             states = new Dictionary<Type, IState>
             {
-                [typeof(ServerInitializingState)] = new ServerInitializingState(this),
-                [typeof(ConnectionWaitingState)] = new ConnectionWaitingState(this),
+                [typeof(InitializingState)] = new InitializingState(this),
             };
         }
         public void ChangeState<TState>() where TState : IState

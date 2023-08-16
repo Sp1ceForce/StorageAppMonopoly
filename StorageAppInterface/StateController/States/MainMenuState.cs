@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StorageController.Objects
+namespace StorageAppInterface.StateController.States
 {
-    internal class Pallete
+    internal class MainMenuState
     {
     }
 }

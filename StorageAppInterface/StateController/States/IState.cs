@@ -1,4 +1,4 @@
-﻿namespace StorageController.StateController
+﻿namespace StorageAppInterface.StateController.States
 {
     public interface IState
     {

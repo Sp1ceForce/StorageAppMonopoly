@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageAppInterface", "StorageAppInterface\StorageAppInterface.csproj", "{B2AE0BD8-7389-4807-8C70-8BCD76CD39F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageAppInterface", "StorageAppInterface\StorageAppInterface.csproj", "{B2AE0BD8-7389-4807-8C70-8BCD76CD39F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageController", "StorageController\StorageController.csproj", "{01C4E8FE-7272-4CC3-9B78-4FC30C56FEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageAppLogic", "StorageController\StorageAppLogic.csproj", "{01C4E8FE-7272-4CC3-9B78-4FC30C56FEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

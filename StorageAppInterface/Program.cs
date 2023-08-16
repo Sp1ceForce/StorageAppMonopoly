@@ -1,11 +1,14 @@
-﻿using System;
+﻿using StorageAppInterface.StateController.States;
+using StorageAppLogic.StateController;
+
 namespace StorageAppInterface
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            StorageStateManager storageStateManager = new StorageStateManager();
+            storageStateManager.ChangeState<InitializingState>();
         }
     }
 }
