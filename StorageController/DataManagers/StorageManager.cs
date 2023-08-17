@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StorageAppLogic.DataManagers
 {
@@ -31,6 +28,11 @@ namespace StorageAppLogic.DataManagers
             }
             else throw new Exception("There is more than one instance of Storage Manager");
         }
+        public void AddRandomPalletes(int count)
+        {
+            var generatedPalletes = PalleteGenerator.GeneratePalletes(count);
+            StorageManager.Instance.AddPalletesFromList(generatedPalletes);
+        }
         public void LoadData()
         {
             _palletes = SaveLoadController.LoadPalletes();
@@ -38,6 +40,16 @@ namespace StorageAppLogic.DataManagers
         public void SaveData()
         {
             SaveLoadController.SavePalletes(_palletes);
+        }
+        public void AddPallete(Pallete pallete)
+        {
+            if(pallete != null)
+            _palletes.Add(pallete);
+        }
+        public void AddPalletesFromList(List<Pallete> palletes)
+        {
+            if(palletes?.Count != 0)
+            _palletes.AddRange(palletes);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using StorageAppLogic.Models.Structs;
 using System;
 
 namespace StorageAppLogic.Models

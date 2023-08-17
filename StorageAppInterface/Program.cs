@@ -11,7 +11,7 @@ namespace StorageAppInterface
     {
         static void Main(string[] args)
         {
-            StorageAppUIStateManager storageStateManager = new StorageAppUIStateManager();
+            UIStateManager storageStateManager = new UIStateManager();
             storageStateManager.ChangeState<InitializingState>();
         }
     }

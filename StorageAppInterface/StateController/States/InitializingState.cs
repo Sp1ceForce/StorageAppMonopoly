@@ -7,8 +7,8 @@ namespace StorageAppInterface.StateController.States
 {
     public class InitializingState : IState
     {
-        StorageAppUIStateManager _initializer;
-        public InitializingState(StorageAppUIStateManager initializer) 
+        UIStateManager _initializer;
+        public InitializingState(UIStateManager initializer) 
         {
             this._initializer = initializer;
         }

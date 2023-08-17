@@ -1,7 +1,7 @@
 ﻿
 using Newtonsoft.Json;
 
-namespace StorageAppLogic.Models
+namespace StorageAppLogic.Models.Structs
 {
     public struct DimensionalData
     {
@@ -9,7 +9,7 @@ namespace StorageAppLogic.Models
         public double Height { get; private set; }
         public double Depth { get; private set; }
         [JsonConstructor]
-        public DimensionalData(uint width, uint height, uint depth)
+        public DimensionalData(double width, double height, double depth)
         {
             if (width <= 0 || depth <= 0 || height <= 0) throw new System.ArgumentOutOfRangeException("Width, depth or height can't be equal or less than 0");
 

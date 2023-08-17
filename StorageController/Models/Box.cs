@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using StorageAppLogic.Interfaces;
+using StorageAppLogic.Models.Structs;
 
 namespace StorageAppLogic.Models
 {

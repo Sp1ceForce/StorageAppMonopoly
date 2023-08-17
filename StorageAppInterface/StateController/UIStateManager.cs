@@ -10,17 +10,18 @@ namespace StorageAppLogic.StateController
     /// </summary>
 
     //Название такое себе если честно
-    public class StorageAppUIStateManager
+    public class UIStateManager
     {
         Dictionary<Type, IState> states;
         IState currentState;
-        public StorageAppUIStateManager()
+        public UIStateManager()
         {
             states = new Dictionary<Type, IState>
             {
                 [typeof(InitializingState)] = new InitializingState(this),
                 [typeof(MainMenuState)] = new MainMenuState(this),
                 [typeof(PalletesInteractionState)] = new PalletesInteractionState(this),
+                [typeof(DataPrintState)] = new DataPrintState(this),
             };
         }
         public void ChangeState<TState>() where TState : IState

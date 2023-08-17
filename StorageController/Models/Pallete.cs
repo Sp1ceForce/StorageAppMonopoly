@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Newtonsoft.Json;
 using StorageAppLogic.Interfaces;
+using StorageAppLogic.Models.Structs;
 
 namespace StorageAppLogic.Models
 {
     public class Pallete : BaseItem, IExpirable
     {
-        private const double BaseWeight = 30;
+        public const double BaseWeight = 30;
         [JsonIgnore]
         public ReadOnlyCollection<Box> BoxesList => boxesList.AsReadOnly();
         [JsonProperty]

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using StorageAppInterface.StateController;
 
-namespace StorageAppInterface.DrawHandlers
+namespace StorageAppInterface.UIHandlers
 {
 
     //Статический класс, отвечает за работу почти всех меню
-    public static class MenuDrawHandler
+    public static class MenuWorkHandler
     {
         public static void ExecuteOneMenuCycle(IReadOnlyDictionary<string,Command> commands, string menuName)
         {
-            //Console.Clear();
+            Console.Clear();
             DrawMenu(commands, menuName);
             string input = GetInput();
             if (!string.IsNullOrWhiteSpace(input))

@@ -1,55 +1,41 @@
-﻿using StorageAppInterface.DrawHandlers;
+﻿using StorageAppInterface.UIHandlers;
 using StorageAppInterface.StateController.States.Intefaces;
 using StorageAppLogic.StateController;
 using System;
 using System.Collections.Generic;
+using StorageAppLogic.DataManagers;
 
 namespace StorageAppInterface.StateController.States
 {
     public class PalletesInteractionState : IState
     {
         const string MenuName = "Редактирование и добавление паллет";
-        const string PalleteAddCommandString = "1";
-        const string PalleteEditCommandString = "2";
+        const string GeneratePalletesCommandString = "1";
+        const string SavePalletesCommandString = "2";
         const string ExitCommandString = "3";
+
         Dictionary<string, Command> _commands;
-        StorageAppUIStateManager _initializer;
+        UIStateManager _initializer;
         bool _isWorkContinue = false;
-        public PalletesInteractionState(StorageAppUIStateManager initializer)
+        public PalletesInteractionState(UIStateManager initializer)
         {
             _initializer = initializer;
             _commands = new Dictionary<string, Command>
             {
-                [PalleteAddCommandString] = new Command("Добавление новой паллеты"),
-                [PalleteEditCommandString] = new Command("Редактирование паллет"),
+                [GeneratePalletesCommandString] = new Command("Генерация случайных паллет"),
+                [SavePalletesCommandString] = new Command("Сохранить все данные"),
                 [ExitCommandString] = new Command("Назад")
             };
-            _commands[PalleteEditCommandString].OnCommandTrigger += OnPalleteEditCommandTrigger;
-            _commands[PalleteAddCommandString].OnCommandTrigger += OnPalleteAddCommandTrigger;
+            _commands[GeneratePalletesCommandString].OnCommandTrigger += OnGeneratePalletesCommandTrigger;
             _commands[ExitCommandString].OnCommandTrigger += OnExitCommandCommandTrigger;
+            _commands[SavePalletesCommandString].OnCommandTrigger += OnSavePalletesCommandTrigger;
         }
-
-        private void OnExitCommandCommandTrigger()
-        {
-            _isWorkContinue = false;
-        }
-
-        private void OnPalleteAddCommandTrigger()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnPalleteEditCommandTrigger()
-        {
-            throw new NotImplementedException();
-        }
-
         public void OnEnter()
         {
             _isWorkContinue = true;
             while (_isWorkContinue)
             {
-                MenuDrawHandler.ExecuteOneMenuCycle(_commands, MenuName);
+                MenuWorkHandler.ExecuteOneMenuCycle(_commands, MenuName);
             }
         }
 
@@ -57,5 +43,33 @@ namespace StorageAppInterface.StateController.States
         {
             Console.Clear();
         }
+        #region CommandHandlers
+        private void OnExitCommandCommandTrigger()
+        {
+            _isWorkContinue = false;
+            _initializer.ChangeState<MainMenuState>();
+        }
+        void OnGeneratePalletesCommandTrigger()
+        {
+            bool continueLoop = true;
+            while (continueLoop)
+            {
+                Console.WriteLine("Введите количество паллет для генерации:");
+                string input = Console.ReadLine();
+                bool isParsed = int.TryParse(input, out int totalPalletes);
+                if (isParsed && totalPalletes > 0)
+                {
+                    StorageManager.Instance.AddRandomPalletes(totalPalletes);
+                    continueLoop = false;
+                } 
+                else Console.WriteLine("Ошибка при вводе, попробуйте ещё раз");
+            }
+
+        }
+        void OnSavePalletesCommandTrigger()
+        {
+            StorageManager.Instance.SaveData();
+        }
+        #endregion
     }
 }
