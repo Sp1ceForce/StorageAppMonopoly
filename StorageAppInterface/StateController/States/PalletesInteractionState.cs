@@ -9,7 +9,7 @@ namespace StorageAppInterface.StateController.States
 {
     public class PalletesInteractionState : IState
     {
-        const string MenuName = "Редактирование и добавление паллет";
+        const string MenuName = "Генерация и сохранение паллет";
         const string GeneratePalletesCommandString = "1";
         const string SavePalletesCommandString = "2";
         const string ExitCommandString = "3";
