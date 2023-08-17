@@ -1,4 +1,5 @@
-﻿using StorageAppLogic;
+﻿using StorageAppInterface.StateController.States.Intefaces;
+using StorageAppLogic.DataManagers;
 using StorageAppLogic.StateController;
 using System;
 
@@ -6,10 +7,10 @@ namespace StorageAppInterface.StateController.States
 {
     public class InitializingState : IState
     {
-        StorageStateManager initializer;
-        public InitializingState(StorageStateManager initializer) 
+        StorageAppUIStateManager _initializer;
+        public InitializingState(StorageAppUIStateManager initializer) 
         {
-            this.initializer = initializer;
+            this._initializer = initializer;
         }
 
         public void OnEnter()
@@ -19,6 +20,7 @@ namespace StorageAppInterface.StateController.States
             storageManager.LoadData();
             Console.WriteLine("Данные загружены, нажмите любую клавишу для продолжения");
             Console.ReadKey();
+            _initializer.ChangeState<MainMenuState>();
         }
 
         public void OnExit()

@@ -7,18 +7,24 @@ using StorageAppLogic.Interfaces;
 
 namespace StorageAppLogic.Models
 {
-    public class Pallete : BaseObject, IExpirable
+    public class Pallete : BaseItem, IExpirable
     {
         private const double BaseWeight = 30;
         [JsonIgnore]
         public ReadOnlyCollection<Box> BoxesList => boxesList.AsReadOnly();
-      
         [JsonProperty]
         List<Box> boxesList;
-      
+
         public override double Weight => BoxesList.Sum(b => b.Weight) + BaseWeight;
-        
-        public DateTime ExpirationDate => BoxesList.Min(b => b.ExpirationDate);
+
+        public DateTime ExpirationDate 
+        { get 
+            {
+                if (BoxesList.Count > 0)
+                    return BoxesList.Min(b => b.ExpirationDate);
+                else return DateTime.Now.Date;
+            }
+        }
  
         public Pallete(DimensionalData dimensionalData) : base(dimensionalData)
         {
@@ -30,11 +36,11 @@ namespace StorageAppLogic.Models
             boxesList = new List<Box>();
         }
         [JsonIgnore]
-        public override uint Volume
+        public override double Volume
         {
             get
             {
-                uint volume = 0;
+                double volume = 0;
                 foreach (Box box in BoxesList)
                 {
                     volume += box.Volume;

@@ -1,21 +1,26 @@
 ﻿using StorageAppInterface.StateController.States;
+using StorageAppInterface.StateController.States.Intefaces;
 using System;
 using System.Collections.Generic;
 
 namespace StorageAppLogic.StateController
 {
     /// <summary>
-    /// Контроллер машины-состояний, необходим для работы главного меню
+    /// Контроллер машины-состояний, необходим для работы пользовательского интерфейса
     /// </summary>
-    public class StorageStateManager
+
+    //Название такое себе если честно
+    public class StorageAppUIStateManager
     {
         Dictionary<Type, IState> states;
         IState currentState;
-        public StorageStateManager()
+        public StorageAppUIStateManager()
         {
             states = new Dictionary<Type, IState>
             {
                 [typeof(InitializingState)] = new InitializingState(this),
+                [typeof(MainMenuState)] = new MainMenuState(this),
+                [typeof(PalletesInteractionState)] = new PalletesInteractionState(this),
             };
         }
         public void ChangeState<TState>() where TState : IState
@@ -26,6 +31,7 @@ namespace StorageAppLogic.StateController
                 currentState = state;
                 currentState.OnEnter();
             }
+            else throw new ArgumentException($"There is no corresponding state for {typeof(TState)}");
         }
     }
 

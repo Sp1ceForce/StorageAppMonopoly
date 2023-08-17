@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StorageAppLogic
+namespace StorageAppLogic.DataManagers
 {
     /// <summary>
     /// Класс отвечающий за работу с данными в приложении (паллеты)
@@ -18,7 +18,7 @@ namespace StorageAppLogic
 
         public ReadOnlyCollection<Pallete> Palletes => _palletes.AsReadOnly();
         List<Pallete> _palletes;
-        
+
         public StorageManager()
         {
             InitializeSingleton();

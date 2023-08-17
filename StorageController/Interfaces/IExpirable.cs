@@ -7,7 +7,7 @@ namespace StorageAppLogic.Interfaces
     /// </summary>
     public interface IExpirable
     {
-        //Тут стоило вообще использовать DateOnly, да вот только он появился только в следующей версии .Net'а
+        //Тут стоило вообще использовать DateOnly, да вот только он появился в следующих версиях .Net'а
         public DateTime ExpirationDate { get; }
     }
 }
